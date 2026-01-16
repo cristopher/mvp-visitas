@@ -1,0 +1,7 @@
+{
+  "name": "Visitas Técnicas | Cristopher",
+  "description": "Plataforma integral para la gestión de visitas técnicas, auditorías y mantenimiento en obras de construcción.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
