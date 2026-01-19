@@ -25,7 +25,6 @@ export const MOCK_TASKS: Task[] = [
     duration: '2d 15h',
     foto_original: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop',
     evidencia_final: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
-    // Added required descripcion_final property
     descripcion_final: '',
     task_history: [
       {
@@ -33,12 +32,6 @@ export const MOCK_TASKS: Task[] = [
         fecha: '2023-10-25T09:15:00Z',
         comentario: 'Personal en sitio. Limpieza de superficie para visualización de fisuras.',
         history_image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop'
-      },
-      {
-        id: 102,
-        fecha: '2023-10-25T14:30:00Z',
-        comentario: 'Pruebas de esclerometría en 4 puntos estratégicos del eje 4-C.',
-        history_image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop'
       }
     ]
   },
@@ -55,22 +48,8 @@ export const MOCK_TASKS: Task[] = [
     duration: '4h 45m',
     foto_original: 'https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=1000&auto=format&fit=crop',
     evidencia_final: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1000&auto=format&fit=crop',
-    // Added required descripcion_final property
     descripcion_final: 'Se validaron todas las conexiones según el plano eléctrico v2. Certificación emitida.',
-    task_history: [
-      {
-        id: 201,
-        fecha: '2023-10-23T10:00:00Z',
-        comentario: 'Inicio de cableado en bandejas principales.',
-        history_image: 'https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=600&auto=format&fit=crop'
-      },
-      {
-        id: 202,
-        fecha: '2023-10-23T14:00:00Z',
-        comentario: 'Cierre de circuitos y pruebas de continuidad finalizadas.',
-        history_image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop'
-      }
-    ]
+    task_history: []
   },
   {
     id: '3',
@@ -82,8 +61,7 @@ export const MOCK_TASKS: Task[] = [
     assignee: 'ANA GARCIA',
     status: TaskStatus.PENDING,
     foto_original: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
-    evidencia_final: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
-    // Added required descripcion_final property
+    evidencia_final: '',
     descripcion_final: '',
     task_history: []
   },
@@ -99,15 +77,161 @@ export const MOCK_TASKS: Task[] = [
     duration: '1d 0h',
     foto_original: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop',
     evidencia_final: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?q=80&w=1000&auto=format&fit=crop',
-    // Added required descripcion_final property
     descripcion_final: '',
-    task_history: [
-      {
-        id: 401,
-        fecha: '2023-10-26T08:00:00Z',
-        comentario: 'Revisión de arneses y puntos de anclaje en torre norte.',
-        history_image: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=600&auto=format&fit=crop'
-      }
-    ]
+    task_history: []
+  },
+  {
+    id: '5',
+    title: 'PINTURA FACHADA NORTE',
+    project: 'TORRE ALPHA',
+    date: '27 Oct',
+    description: 'Aplicación de primera mano de pintura hidrófuga en la fachada norte.',
+    solicitante: 'Ing. Ruiz',
+    assignee: 'CARLOS LOPEZ',
+    status: TaskStatus.IN_PROGRESS,
+    foto_original: 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '6',
+    title: 'REVISIÓN DE ASCENSORES',
+    project: 'TORRE ALPHA',
+    date: '27 Oct',
+    description: 'Pruebas de carga y frenado de emergencia en ascensor 1 y 2.',
+    solicitante: 'Adm. Torre',
+    assignee: 'PEDRO DUARTE',
+    status: TaskStatus.COMPLETED,
+    foto_original: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1000&auto=format&fit=crop',
+    descripcion_final: 'Pruebas satisfactorias. Ascensores operativos.',
+    task_history: []
+  },
+  {
+    id: '7',
+    title: 'REVESTIMIENTO CERÁMICO',
+    project: 'PORTAL K',
+    date: '28 Oct',
+    description: 'Colocación de porcelanato en el lobby principal.',
+    solicitante: 'Arq. Lucía M.',
+    assignee: 'JUAN PEREZ',
+    status: TaskStatus.PENDING,
+    foto_original: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '8',
+    title: 'MONTAJE DE GRÚA',
+    project: 'LOGISTICA SUR',
+    date: '28 Oct',
+    description: 'Supervisión del montaje de la grúa torre principal para el sector de carga.',
+    solicitante: 'Gerente Operativo',
+    assignee: 'MARCO SOTO',
+    status: TaskStatus.IN_REVIEW,
+    foto_original: 'https://images.unsplash.com/photo-1531834361270-369403328e20?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '9',
+    title: 'LIMPIEZA DE OBRA',
+    project: 'PORTAL K',
+    date: '29 Oct',
+    description: 'Retiro de escombros y limpieza general tras finalización de obra gruesa.',
+    solicitante: 'Arq. Marcos V.',
+    assignee: 'EQUIPO A',
+    status: TaskStatus.IN_PROGRESS,
+    foto_original: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '10',
+    title: 'PRUEBAS DE PRESIÓN AGUA',
+    project: 'TORRE ALPHA',
+    date: '29 Oct',
+    description: 'Validación de presión en tuberías de agua potable del piso 10 al 15.',
+    solicitante: 'Ing. Ruiz',
+    assignee: 'ANTONIO SOLIS',
+    status: TaskStatus.PENDING,
+    foto_original: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '11',
+    title: 'INSTALACIÓN DE VENTANALES',
+    project: 'PLAZA CENTRAL',
+    date: '30 Oct',
+    description: 'Montaje de vidrios templados en el área comercial del primer nivel.',
+    solicitante: 'Arq. Elena P.',
+    assignee: 'SERGIO VIDAL',
+    status: TaskStatus.IN_PROGRESS,
+    foto_original: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '12',
+    title: 'REVISIÓN DE ESTRUCTURA METÁLICA',
+    project: 'LOGISTICA SUR',
+    date: '30 Oct',
+    description: 'Inspección de soldaduras en las vigas principales del galpón 3.',
+    solicitante: 'Gerente Operativo',
+    assignee: 'RAUL MENDEZ',
+    status: TaskStatus.PENDING,
+    foto_original: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '13',
+    title: 'AJUSTE DE TABLEROS ELÉCTRICOS',
+    project: 'PORTAL K',
+    date: '31 Oct',
+    description: 'Equilibrado de cargas en tableros secundarios de iluminación.',
+    solicitante: 'Ing. Roberto S.',
+    assignee: 'JUAN PEREZ',
+    status: TaskStatus.IN_REVIEW,
+    foto_original: 'https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
+  },
+  {
+    id: '14',
+    title: 'JARDINERÍA EXTERIOR',
+    project: 'PLAZA CENTRAL',
+    date: '31 Oct',
+    description: 'Plantación de palmeras y arbustos en el área perimetral.',
+    solicitante: 'Arq. Elena P.',
+    assignee: 'EQUIPO PAISAJE',
+    status: TaskStatus.COMPLETED,
+    foto_original: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000&auto=format&fit=crop',
+    descripcion_final: 'Paisajismo terminado según diseño aprobado.',
+    task_history: []
+  },
+  {
+    id: '15',
+    title: 'INSPECCIÓN DE CUBIERTA',
+    project: 'LOGISTICA SUR',
+    date: '01 Nov',
+    description: 'Revisión de estanqueidad en la cubierta tras lluvias recientes.',
+    solicitante: 'Gerente Operativo',
+    assignee: 'MARCO SOTO',
+    status: TaskStatus.PENDING,
+    foto_original: 'https://images.unsplash.com/photo-1635339001026-686e30ed321c?q=80&w=1000&auto=format&fit=crop',
+    evidencia_final: '',
+    descripcion_final: '',
+    task_history: []
   }
 ];
