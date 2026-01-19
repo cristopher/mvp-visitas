@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   ChevronLeft, 
+  ChevronRight,
   Calendar, 
   User,
   Maximize2, 
@@ -23,12 +24,21 @@ interface ManagerOrderDetailUnifiedViewProps {
   onRequestCorrection?: () => void;
 }
 
+const HISTORY_ITEMS_PER_PAGE = 10;
+
 export const ManagerOrderDetailUnifiedView: React.FC<ManagerOrderDetailUnifiedViewProps> = ({ task, onBack, onRequestCorrection }) => {
   const [modalConfig, setModalConfig] = useState<{ isOpen: boolean; url: string; title: string }>({
     isOpen: false,
     url: '',
     title: ''
   });
+
+  const [currentHistoryPage, setCurrentHistoryPage] = useState(1);
+
+  // Reset pagination when task changes
+  useEffect(() => {
+    setCurrentHistoryPage(1);
+  }, [task.id]);
 
   const openModal = (url: string | undefined, title: string) => {
     if (!url) return;
@@ -49,6 +59,14 @@ export const ManagerOrderDetailUnifiedView: React.FC<ManagerOrderDetailUnifiedVi
       return isoString;
     }
   };
+
+  const history = useMemo(() => task.task_history || [], [task.task_history]);
+  const totalHistoryPages = Math.ceil(history.length / HISTORY_ITEMS_PER_PAGE);
+
+  const paginatedHistory = useMemo(() => {
+    const startIndex = (currentHistoryPage - 1) * HISTORY_ITEMS_PER_PAGE;
+    return history.slice(startIndex, startIndex + HISTORY_ITEMS_PER_PAGE);
+  }, [history, currentHistoryPage]);
 
   const getStatusConfig = (status: TaskStatus) => {
     switch (status) {
@@ -174,15 +192,18 @@ export const ManagerOrderDetailUnifiedView: React.FC<ManagerOrderDetailUnifiedVi
             </div>
           </div>
 
-          {/* Card 4: Historial de Avances */}
+          {/* Card 4: Historial de Avances con Paginación */}
           <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-            <div className="px-6 py-5 border-b border-slate-50">
+            <div className="px-6 py-5 border-b border-slate-50 flex justify-between items-center">
               <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Historial de Avances</h3>
+              <div className="bg-slate-50 border border-slate-100 px-2.5 py-1 rounded text-[9px] font-black text-slate-400 uppercase tracking-tight">
+                {history.length} Hitos
+              </div>
             </div>
             
             <div className="divide-y divide-slate-50">
-              {task.task_history && task.task_history.length > 0 ? (
-                task.task_history.map((item) => (
+              {paginatedHistory.length > 0 ? (
+                paginatedHistory.map((item) => (
                   <div 
                     key={item.id} 
                     className={`p-5 flex gap-4 items-start active:bg-slate-50 transition-colors group ${item.history_image ? 'cursor-pointer' : 'cursor-default'}`}
@@ -222,6 +243,39 @@ export const ManagerOrderDetailUnifiedView: React.FC<ManagerOrderDetailUnifiedVi
                 </div>
               )}
             </div>
+
+            {/* Pagination Controls for History */}
+            {history.length > HISTORY_ITEMS_PER_PAGE && (
+              <div className="px-6 py-4 bg-slate-50/50 border-t border-slate-50 flex items-center justify-between">
+                <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                  Página {currentHistoryPage} de {totalHistoryPages}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => setCurrentHistoryPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentHistoryPage === 1}
+                    className={`p-2 rounded-lg border transition-all ${
+                      currentHistoryPage === 1 
+                        ? 'bg-transparent border-slate-100 text-slate-200 cursor-not-allowed' 
+                        : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 active:scale-90'
+                    }`}
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button 
+                    onClick={() => setCurrentHistoryPage(prev => Math.min(totalHistoryPages, prev + 1))}
+                    disabled={currentHistoryPage === totalHistoryPages}
+                    className={`p-2 rounded-lg border transition-all ${
+                      currentHistoryPage === totalHistoryPages 
+                        ? 'bg-transparent border-slate-100 text-slate-200 cursor-not-allowed' 
+                        : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 active:scale-90'
+                    }`}
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Secciones de Cierre - Solo si está FINALIZADO */}
